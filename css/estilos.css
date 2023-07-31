@@ -1,0 +1,218 @@
+/* PALETA DE COLORES
+AZUL OBSCURO 355070
+VIOLETA 6d597a
+MORADO b56576
+ROSA VIEJO e56b6f
+SALMON CLARO eaac8b
+ */
+ 
+ *{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+html{
+    font-size: 62.5;
+}
+
+body{
+    font-family:'Montserrat', sans-serif;
+    background-image: linear-gradient(#6c3b46, #b5657620);
+    background-position:center ;
+    background-size: cover;
+}
+
+/* ---------- HEADER----------*/
+
+.deg-navbar {
+    background-image: linear-gradient(#6c3b46e0, #b5657649);
+}
+.navbar-brand{
+    margin: 0 0 10px 0px;
+}
+.navbar-brand img {
+    height: 60px;
+}
+.navbar-expand-lg .navbar-collapse {
+    justify-content: flex-end;
+}
+.enlace-pag {
+    padding: 5px 10px;
+    text-decoration: none;
+    color: #e9e9ea;
+}
+.navbar {
+    min-height: 10vh;
+}
+.marcador-actual {
+    background-color: #6c3b46;
+    padding: 5px 10px;
+    border-radius: 20px;
+}
+.marcador {
+    padding: 5px 10px;
+    border-radius: 20px;
+}
+.navbar-nav {
+    height: 65px;
+    align-items: center;
+    width: 550px;
+    justify-content: flex-end;
+    padding: 10px;
+}
+.marcador:hover {
+    background-color: #6c3b467d;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-family: 'Montserrat', sans-serif;
+}
+.enlace-pag:hover {
+    font-family: 'Montserrat', sans-serif;
+}
+.marcador-actual:hover {
+    padding: 5px 10px;
+}
+.navbar-toggler-icon {
+    background-image: url(../multimedia/menu-hamb.png);
+}
+.navbar-toggler:focus {
+    box-shadow: none;
+}
+/*----------MAIN----------*/
+
+.banner-inicio {
+    background-image: url(../multimedia/aula_fondo2.jpg);
+    height: 100vh;
+    background-size: cover;
+
+}
+
+.main-index {
+    min-height: 85vh;
+}
+
+.titulo-principal {
+    height: 450px;
+    display: flex;
+    text-align: center;
+    color: #0c0708;
+    font-size: 40px;
+    flex-direction: column;
+    margin: auto;
+    justify-content: center;
+}
+
+.nombre-negrita {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 85px;
+}
+
+
+.botones-index {
+    height: 100px;
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+    margin: auto;
+}
+
+.btn-sp {
+    /* margin: 0 100px 50px 100px; */
+    padding: 20px 50px;
+    border: none;
+    border-radius: 10px;
+    background-color: #355070;
+    color: #e9e9ea;
+    font-size: 20px;
+    box-shadow: 5px 8px 20px 0px #00000082;
+}
+
+.btn-sp:hover {
+    transform: scale(1.05);
+    transition: 1s;
+    border: 1px solid #e9e9ea98;
+}
+
+.texto-negrita {
+    font-family: 'Montserrat', sans-serif;
+
+}
+
+#div_formulario{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: start;
+    background-color: #354f70b6;
+    width: 600px;
+    height: 100%;
+    margin: auto;
+    border-radius: 20px;
+    padding: 10px;
+    color: #e9e9ea;
+}
+
+h1{
+    font-size: 30px;
+}
+
+.input_form{
+    width: 80%;
+}
+
+.btn_form{
+    width: 80%;
+    border-radius: 15px;    
+}
+
+.btn_form:hover{
+    background-color: #355070;
+    color: #e9e9ea;
+    border-color: #355070;
+}
+
+.offcanvas p{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    text-align: center;
+    color: #e9e9ea;
+}
+
+.offcanvas-header{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    text-align: center;
+    color: #e9e9ea;
+}
+
+.offcanvas {
+    position: fixed;
+    top: 70px;
+    right: 20px;
+    background-color: #354f708e;
+    padding: 20px;
+    border: 1px;
+    border-radius: 5px;
+    max-width: 300px;
+    transition: transform 0.3s ease-in-out;
+    transform: translateY(-100%);
+    overflow-y: auto;
+}
+
+.offcanvas.show {
+    transform: translateY(0);
+}
+
+.lista_notas {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    text-align: left;
+    color: #e9e9ea;
+}
+
+
+
+
+
+  
