@@ -217,9 +217,10 @@ h1{
     border-radius: 5px;
     max-width: 350px;
     height: fit-content;
+    max-height: calc(100vh - 40px);
     transition: transform 0.3s ease-in-out;
     transform: translateY(-100%);
-    overflow-y: auto;
+    overflow-y:auto; 
 }
 
 .offcanvas.show {
