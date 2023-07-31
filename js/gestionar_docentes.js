@@ -6,8 +6,6 @@ document.addEventListener("DOMContentLoaded", () => {
 let notas_ingresadas = new Array();
 let gen_id = 1
 
-let avisos = document.getElementById("avisos");
-
 let btn_agregar = document.getElementById("btn_agregar");
 btn_agregar.addEventListener("click",()=>{
 
@@ -44,7 +42,6 @@ btn_filtrarMateria.addEventListener("click", () => {
 
 
 function validar_formulario(){
-    avisos.innerHTML = "";
 
     let input_nombre = document.getElementById("nombre").value;
     let input_apellido = document.getElementById("apellido").value;
@@ -127,9 +124,15 @@ function generar_offcanvas_nota(nueva_nota) {
   offcanvas = document.createElement("div");
   offcanvas.classList.add("offcanvas", "show");
 
+  let btn_cerrar_offcanvas = document.createElement("button");
+  btn_cerrar_offcanvas.classList.add("btn_cerrar_offcanvas");
+  btn_cerrar_offcanvas.textContent = "X";
+  btn_cerrar_offcanvas.addEventListener("click", ocultar_offcanvas);
+
   let offcanvasHeader = document.createElement("div");
   offcanvasHeader.classList.add("offcanvas-header");
   offcanvasHeader.textContent = "Nota subida con éxito";
+  offcanvasHeader.appendChild(btn_cerrar_offcanvas);
 
   let offcanvasBody = document.createElement("div");
   offcanvasBody.classList.add("offcanvas-body");
@@ -159,6 +162,13 @@ function generar_offcanvas_nota(nueva_nota) {
   resetear_form();
 }
 
+function ocultar_offcanvas() {
+  if (offcanvas) {
+    offcanvas.remove();
+    offcanvas = null;
+  }
+}
+
 function resetear_form(){
   
     document.getElementById("nombre").value = "";
@@ -173,7 +183,8 @@ function resetear_form(){
   }
   function existen_notas(){
     if(notas_ingresadas.length == 0){
-      alert("No existen notas subidas a la plataforma")        
+      alert("No existen notas subidas a la plataforma")   
+      resetear_form();     
       return false;
             
     }else{
@@ -190,6 +201,12 @@ function mostrar_arreglo_notas(notas) {
   offcanvas = document.createElement("div");  
   offcanvas.classList.add("offcanvas", "show");
 
+  let btn_cerrar_offcanvas = document.createElement("button");
+  btn_cerrar_offcanvas.classList.add("btn_cerrar_offcanvas");
+  btn_cerrar_offcanvas.textContent = "X";
+  btn_cerrar_offcanvas.addEventListener("click", ocultar_offcanvas);
+  offcanvas.appendChild(btn_cerrar_offcanvas);
+
   let mensaje = "Las notas subidas son:";
   const ul = document.createElement("ul");
   ul.textContent = mensaje;
@@ -197,7 +214,7 @@ function mostrar_arreglo_notas(notas) {
   
   notas.forEach((nota) => {
     const li = document.createElement("li");
-    li.textContent = `Nombre: ${nota.nombre} Apellido: ${nota.apellido} Materia: ${nota.materia} Curso: ${nota.curso} ° Nota: ${nota.nota}`;
+    li.textContent = `Alumn@: ${nota.nombre} ${nota.apellido} Materia: ${nota.materia} Curso: ${nota.curso} ° Nota: ${nota.nota}`;
     li.classList.add("lista_notas");
     ul.appendChild(li);
   });
@@ -223,4 +240,4 @@ window.addEventListener("beforeunload", () => {
     localStorage.setItem("notas", JSON.stringify(notas_ingresadas));
   });
 
-/*   localStorage.clear() */
+ /*  localStorage.clear() */

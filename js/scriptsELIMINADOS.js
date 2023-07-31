@@ -1,4 +1,4 @@
-function generar_offcanvas_nota(nueva_nota) {
+/* function generar_offcanvas_nota(nueva_nota) {
     let offcanvas = document.createElement("div");
     offcanvas.classList.add("offcanvas", "show");
 
@@ -20,7 +20,7 @@ function generar_offcanvas_nota(nueva_nota) {
     offcanvasContainer.appendChild(offcanvas);
 
     resetear_form();
-}
+} */
 
 
 /* let btn_filtrarCurso = document.getElementById("btn_filtrarCurso");

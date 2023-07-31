@@ -138,7 +138,7 @@ body{
     font-family: 'Montserrat', sans-serif;
 
 }
-
+ /* FORM DOCENTES */
 #div_formulario{
     display: flex;
     flex-direction: column;
@@ -177,6 +177,17 @@ h1{
     font-size: 20px;
     text-align: center;
     color: #e9e9ea;
+    margin-top: 30px;
+}
+
+.offcanvas ul{
+   padding: auto;
+   margin-top: 30px;
+}
+
+.offcanvas li{
+    font-size: 18px;
+
 }
 
 .offcanvas-header{
@@ -204,6 +215,19 @@ h1{
     transform: translateY(0);
 }
 
+.btn_cerrar_offcanvas{
+    width: 30px;
+    position:absolute;
+    top: 10px;
+    right: 10px;
+    margin: 7px;
+    background-color:#faf9f976;
+    color: beige;
+    font-weight:400;
+    border: 1px;
+    border-radius: 5px;
+
+}
 .lista_notas {
     font-family: 'Montserrat', sans-serif;
     font-size: 20px;
@@ -216,3 +240,59 @@ h1{
 
 
   
+@media (max-width: 991px) {
+
+    /* index */
+
+    .navbar-nav {
+        height: 200px;
+        width: 100vw;
+        justify-content: space-around;
+        
+    }
+    #navbarNav{
+        background-color: #354f70a9;
+    }
+
+    .enlace-pag {
+        font-size: 14px;
+    }
+
+    .navbar-brand img {
+        height: 35px;
+    }
+
+    .navbar-toggler-icon {
+        width: 25px;
+    }
+
+    .nombre-negrita {
+        font-size: 40px;
+    }
+    
+    .botones-index {
+        flex-direction: column;
+        height: 115px;
+        justify-content: space-between;
+    }
+
+    .btn-sp {
+        margin: auto;
+        padding: 14px 0px;
+        font-size: 14px;
+        width: 380px;
+    }
+
+    #div_formulario{
+        width: 70%;
+    }
+
+    .offcanvas{
+        background-color: #354f70;
+    }
+
+    .btn_cerrar_offcanvas:hover{
+        background-color:#354f70;
+        color: beige;
+    }
+}
