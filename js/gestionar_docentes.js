@@ -208,12 +208,15 @@ function mostrar_arreglo_notas(notas) {
   offcanvas.appendChild(btn_cerrar_offcanvas);
 
   let mensaje = "Las notas subidas son:";
-  const ul = document.createElement("ul");
-  ul.textContent = mensaje;
-   ul.classList.add("lista_notas");
+  let titulo = document.createElement("h2")
+  titulo.textContent = mensaje
+  offcanvas.appendChild(titulo)
+  
+  let ul = document.createElement("ul");
+  ul.classList.add("lista_notas");
   
   notas.forEach((nota) => {
-    const li = document.createElement("li");
+    let li = document.createElement("li");
     li.textContent = `Alumn@: ${nota.nombre} ${nota.apellido} Materia: ${nota.materia} Curso: ${nota.curso} ° Nota: ${nota.nota}`;
     li.classList.add("lista_notas");
     ul.appendChild(li);

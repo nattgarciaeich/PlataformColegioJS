@@ -172,17 +172,27 @@ h1{
     border-color: #355070;
 }
 
+/* OFFCANVAS */
 .offcanvas p{
     font-family: 'Montserrat', sans-serif;
     font-size: 20px;
     text-align: center;
     color: #e9e9ea;
-    margin-top: 30px;
+    margin-top: 10px;
 }
 
 .offcanvas ul{
    padding: auto;
-   margin-top: 30px;
+   margin-top: 10px;
+}
+
+.offcanvas h2 {
+    text-align: start;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    color: #e9e9ea;
+    margin-top: 20px;
+    
 }
 
 .offcanvas li{
@@ -200,12 +210,13 @@ h1{
 .offcanvas {
     position: fixed;
     top: 70px;
-    right: 20px;
+    right: 10px;
     background-color: #354f708e;
     padding: 20px;
     border: 1px;
     border-radius: 5px;
-    max-width: 300px;
+    max-width: 350px;
+    height: fit-content;
     transition: transform 0.3s ease-in-out;
     transform: translateY(-100%);
     overflow-y: auto;
@@ -228,6 +239,12 @@ h1{
     border-radius: 5px;
 
 }
+
+.btn_cerrar_offcanvas:hover{
+    background-color: #f8f9fa;
+    color:#354f70;
+}
+
 .lista_notas {
     font-family: 'Montserrat', sans-serif;
     font-size: 20px;
@@ -259,7 +276,7 @@ h1{
     }
 
     .navbar-brand img {
-        height: 35px;
+        height: 50px;
     }
 
     .navbar-toggler-icon {
@@ -289,10 +306,5 @@ h1{
 
     .offcanvas{
         background-color: #354f70;
-    }
-
-    .btn_cerrar_offcanvas:hover{
-        background-color:#354f70;
-        color: beige;
     }
 }
