@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   
 let notas_ingresadas = new Array();
 let gen_id = 1
+let avisos = document.getElementById("avisos");
 
 let btn_agregar = document.getElementById("btn_agregar");
 btn_agregar.addEventListener("click",()=>{
@@ -42,15 +43,16 @@ btn_filtrarMateria.addEventListener("click", () => {
 
 
 function validar_formulario(){
+  avisos.innerHTML = "";
 
-    let input_nombre = document.getElementById("nombre").value;
-    let input_apellido = document.getElementById("apellido").value;
-    let input_curso = document.getElementById("curso").value;
-    let select_materia = document.getElementById ("materia").value;
-    let input_nota = document.getElementById("nota").value;
+  let input_nombre = document.getElementById("nombre").value;
+  let input_apellido = document.getElementById("apellido").value;
+  let input_curso = document.getElementById("curso").value;
+  let select_materia = document.getElementById ("materia").value;
+  let input_nota = document.getElementById("nota").value;
 
     
-    let arreglo_mensajes = new Array();
+  let arreglo_mensajes = new Array();
 
     if (!input_nombre ){
             arreglo_mensajes.push("Ingrese nombre");          
@@ -64,7 +66,7 @@ function validar_formulario(){
         arreglo_mensajes.push("Ingrese un curso entre 1° y 6°");     
 
     }
-    if (!select_materia){
+    if (!select_materia || select_materia == "-"){
         arreglo_mensajes.push("Seleccione materia");       
 
     }
@@ -81,8 +83,9 @@ function validar_formulario(){
             lista.appendChild(crear_li(element));
         });
 
-        avisos.appendChild(lista);
-    }
+  avisos.appendChild(lista);
+
+  }
 
 return arreglo_mensajes.length == 0;
 
