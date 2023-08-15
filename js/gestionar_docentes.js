@@ -5,7 +5,6 @@ document.addEventListener("DOMContentLoaded", () => {
   
 let notas_ingresadas = new Array();
 let gen_id = 1
-let avisos = document.getElementById("avisos");
 
 let btn_agregar = document.getElementById("btn_agregar");
 btn_agregar.addEventListener("click",()=>{
@@ -27,23 +26,32 @@ btn_verNotas.addEventListener("click",()=>{
 
 let btn_filtrarCurso = document.getElementById("btn_filtrarCurso");
 btn_filtrarCurso.addEventListener("click", () => {
-    if (existen_notas()) {
-      const cursoSeleccionado = document.getElementById("curso_filtro").value;
-      filtrar_curso(cursoSeleccionado);
+const cursoSeleccionado = document.getElementById("curso_filtro").value;
+
+    if(!cursoSeleccionado || cursoSeleccionado <= 0 || cursoSeleccionado > 6){
+    Swal.fire('No ha ingresado una opcion valida')
+    document.getElementById("curso_filtro").value = "";
+      
+    }else if(existen_notas()){
+        filtrar_curso(cursoSeleccionado);
     }
 });
   
 let btn_filtrarMateria = document.getElementById("btn_filtrarMateria");
 btn_filtrarMateria.addEventListener("click", () => {
-    if (existen_notas()) {
-      const materiaSeleccionada = document.getElementById("materia_filtro").value;
+const materiaSeleccionada = document.getElementById("materia_filtro").value.toLowerCase();
+  
+  if(!materiaSeleccionada /* || materiaSeleccionada != "lengua" ||  materiaSeleccionada != "matematica" ||  materiaSeleccionada != "sociales" ||  materiaSeleccionada != "naturales" */){
+    Swal.fire('No ha ingresado una opcion valida')
+    document.getElementById("materia_filtro").value = "";
+      
+  }else if (existen_notas()) {
       filtrar_materia(materiaSeleccionada);
     }
 });
 
 
 function validar_formulario(){
-  avisos.innerHTML = "";
 
   let input_nombre = document.getElementById("nombre").value;
   let input_apellido = document.getElementById("apellido").value;
@@ -83,8 +91,12 @@ function validar_formulario(){
             lista.appendChild(crear_li(element));
         });
 
-  avisos.appendChild(lista);
-
+        Swal.fire({
+          icon: 'error',
+          title: lista,
+          text: "Por favor, vuelva a intentarlo",
+          footer: ""
+        })
   }
 
 return arreglo_mensajes.length == 0;
@@ -110,9 +122,23 @@ function subirNota(){
     let nueva_nota = new Notas_docentes(nombre, apellido, materia, curso, nota);
     nueva_nota.set_id(gen_id);
     gen_id++;
-    notas_ingresadas.push(nueva_nota);
+    notas_ingresadas.push(nueva_nota);  
 
     generar_offcanvas_nota(nueva_nota);
+    Toastify({
+      text: "Nota subida con éxito!",
+      duration: 3000,
+      destination: "https://github.com/apvarun/toastify-js",
+      newWindow: true,
+      close: true,
+      gravity: "top", // `top` or `bottom`
+      position: "right", // `left`, `center` or `right`
+      stopOnFocus: true, // Prevents dismissing of toast on hover
+      style: {
+        background: "linear-gradient(to right, #355070, #354f70b6)",
+      },
+      onClick: function(){} // Callback after click
+    }).showToast();
    
 }
 
@@ -134,7 +160,6 @@ function generar_offcanvas_nota(nueva_nota) {
 
   let offcanvasHeader = document.createElement("div");
   offcanvasHeader.classList.add("offcanvas-header");
-  offcanvasHeader.textContent = "Nota subida con éxito";
   offcanvasHeader.appendChild(btn_cerrar_offcanvas);
 
   let offcanvasBody = document.createElement("div");
@@ -186,7 +211,15 @@ function resetear_form(){
   }
   function existen_notas(){
     if(notas_ingresadas.length == 0){
-      alert("No existen notas subidas a la plataforma")   
+      Swal.fire({
+        title: 'No existen notas subidas a la plataforma',
+        showClass: {
+          popup: 'animate__animated animate__fadeInDown'
+        },
+        hideClass: {
+          popup: 'animate__animated animate__fadeOutUp'
+        }
+      })  
       resetear_form();     
       return false;
             
@@ -245,5 +278,5 @@ function filtrar_materia(materia) {
 window.addEventListener("beforeunload", () => {
     localStorage.setItem("notas", JSON.stringify(notas_ingresadas));
   });
-
- /*  localStorage.clear() */
+/* 
+ localStorage.clear()  */

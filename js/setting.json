@@ -1,0 +1,149 @@
+{
+    "docentes":[
+    
+        {
+            "nombre": "Juan",
+            "apellido": "Pérez",
+            "usuario": "juanperez",
+            "email": "juan@example.com",
+            "contraseña": "contraseña123",
+            "id-D": 1,
+            "descripcion": "docente"            
+        },
+        {
+            "nombre": "María",
+            "apellido": "Gómez",
+            "usuario": "mariagomez",
+            "email": "maria@example.com",
+            "contraseña": "mypass456",
+            "id-D": 2,
+            "descripcion": "docente"
+        },
+        {
+            "nombre": "Carlos",
+            "apellido": "López",
+            "usuario": "carloslopez",
+            "email": "carlos@example.com",
+            "contraseña": "clave789",
+            "id-D": 3,
+            "descripcion": "docente"
+        },
+        {
+            "nombre": "Ana",
+            "apellido": "Rodríguez",
+            "usuario": "anarodriguez",
+            "email": "ana@example.com",
+            "contraseña": "123456",
+            "id-D": 4,
+            "descripcion": "docente"
+        },
+        {
+            "nombre": "Luis",
+            "apellido": "Martínez",
+            "usuario": "luismartinez",
+            "email": "luis@example.com",
+            "contraseña": "luispass",
+            "id-D": 5,
+            "descripcion": "docente"
+        }
+    ],
+
+    "alumnos":[
+        
+        {
+            "nombre": "Ana",
+            "apellido": "García",
+            "usuario": "anagarcia",
+            "email": "ana@example.com",
+            "contraseña": "clave123",
+            "id-A": 1,
+            "descripcion": "alumno",
+            "notas": {
+                "matematica": 8,
+                "lengua": 7,
+                "sociales": 9,
+                "naturales": 6,
+                "arte": 8,
+                "educacion-fisica": 7,
+                "ingles": 8
+              }
+        },
+        {
+            "nombre": "Pedro",
+            "apellido": "Martínez",
+            "usuario": "pedromartinez",
+            "email": "pedro@example.com",
+            "contraseña": "password456",
+            "id-A": 2,
+            "descripcion": "alumno",
+            "notas": {
+                "matematica": 7,
+                "lengua": 8,
+                "sociales": 9,
+                "naturales": 6,
+                "arte": 7,
+                "educacion-fisica": 8,
+                "ingles": 9
+            }
+        },
+        {
+            "nombre": "Laura",
+            "apellido": "López",
+            "usuario": "lauralopez",
+            "email": "laura@example.com",
+            "contraseña": "987654",
+            "id-A": 3,
+            "descripcion": "alumno",
+            "notas": {
+                "matematica": 9,
+                "lengua": 8,
+                "sociales": 7,
+                "naturales": 8,
+                "arte": 9,
+                "educacion-fisica": 7,
+                "ingles": 8
+              }
+        },
+        {
+            "nombre": "Carlos",
+            "apellido": "Rodríguez",
+            "usuario": "carlosrodriguez",
+            "email": "carlos@example.com",
+            "contraseña": "carlospass",
+            "id-A": 4,
+            "descripcion": "alumno",
+            "notas": {
+                "matematica": 6,
+                "lengua": 7,
+                "sociales": 8,
+                "naturales": 9,
+                "arte": 6,
+                "educacion-fisica": 7,
+                "ingles": 8
+            }
+        },
+        {
+            "nombre": "Sofía",
+            "apellido": "Hernández",
+            "usuario": "sofiahernandez",
+            "email": "sofia@example.com",
+            "contraseña": "sofia123",
+            "id-A": 5,
+            "descripcion": "alumno",
+            "notas": {
+                "matematica": 8,
+                "lengua": 9,
+                "sociales": 7,
+                "naturales": 8,
+                "arte": 9,
+                "educacion-fisica": 8,
+                "ingles": 7
+              }
+        }
+    ]
+}
+          
+          
+          
+          
+    
