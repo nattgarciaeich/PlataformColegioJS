@@ -1,3 +1,4 @@
+/* Variables globales para trabajar con DOM en la botonera de inicio */
 let btn_ingresar_docente = document.querySelector('.btn_ingresar_docente');
 let btn_ingresar_alumno = document.querySelector('.btn_ingresar_alumno');
 let ingreso_alumno = document.querySelector('.ingreso-alumno');
@@ -6,8 +7,8 @@ let main_index = document.querySelector('.main-index');
 let volver_inicioA = document.querySelector('.volver-inicioA');
 let volver_inicioD = document.querySelector('.volver-inicioD');
 
-
-// Evento que se dispara cuadno se carga la pagina
+/* Evento que se dispara cuadno se carga la pagina
+ ORGANIZA LO QUE SE MUESTRA EN EL DOM EN RELACION A LOS EVENTOS DE CLICK DEL USUARIO */
 document.addEventListener('DOMContentLoaded', () => {
     
     document.addEventListener('click', e => {
@@ -33,8 +34,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-const url= './js/setting.json'  
+ 
 
+/* EVENTOS DE CLICK DEL FORM DE LOGIN - BOTON INICIAR SESION */
 let btnIniciarSesionAlumno = document.getElementById("btnIniciarSesionAlumno");
 btnIniciarSesionAlumno.addEventListener("click",() => {
     if(validarFormIngresoAlumno()){
@@ -51,10 +53,13 @@ btnIniciarSesionDocente.addEventListener("click",() => {
 
 });
 
+/* VARIABLES GLOBALES INFO QUE ENTRA DEL INPUP DE INGRRESO ALUMNO */
+
 let nombreAlumno = document.getElementById ("nombreAlumno").value;
 let emailAlumno = document.getElementById("emailAlumno").value;
 let contraseñaAlumno = document.getElementById("contraseñaAlumno").value;
 
+/* FUNCION QUE VALIDA EL FORMULARIO ALUMNO Y UTILIZACION DE SWEET ALERT */
 function validarFormIngresoAlumno(){
 
     let nombreAlumno = document.getElementById ("nombreAlumno").value;
@@ -100,40 +105,36 @@ function  crear_li (mensaje){
     li.textContent = mensaje;
     return li;
 }
+
+/* CONSTANTE DE JSON */
+let url = './js/setting.json' 
+
+
+/* FUNCION PARA INCORPORAR LA INFO DE JSON */
+async function obtenerJSON(){
+    const resp = await fetch (url);
+    const data = await resp.json()
+
+    return data
+}
     
-    
+/* FUNCION QUE BUSCA EL ALUMNO REGISTRADO, NOMBRE, EMAIL Y CONTRASELA */   
 function buscarAlumnoRegistrado(){
+    obtenerJSON().then ( data =>{
+        
+    })
     
-      /* 
-          try {
-            // Obtener los datos de usuarios desde el archivo JSON
-            let response = fetch("usuarios.json");
-            let usuarios = response.json();
-      
-            // Buscar el usuario en el array
-            let usuarioEncontrado = usuarios.find(
-              usuario =>
-                usuario.email === email && usuario.contrasena === contrasena
-            );
-      
-            if (usuarioEncontrado) {
-              // Inicio de sesión exitoso
-              alert("Inicio de sesión exitoso");
-            } else {
-              // Credenciales incorrectas
-              alert("Credenciales incorrectas. Intente nuevamente.");
-            }
-          } catch (error) {
-            console.error("Error al obtener los datos de usuarios:", error);
-          } */
- }
+}
 
 
- function validarFormIngresoDocente(){
+/*  VARIABLES GLOBALES INFO QUE ENTRA DEL INPUP DE INGRRESO DOCENTE */
+let usuarioDocente = document.getElementById ("usuarioDocente").value;
+let emailDocente = document.getElementById("emailDocente").value;
+let contraseñaDocente = document.getElementById("contraseñaDocente").value;
 
-    let usuarioDocente = document.getElementById ("usuarioDocente").value;
-    let emailDocente = document.getElementById("emailDocente").value;
-    let contraseñaDocente = document.getElementById("contraseñaDocente").value;
+/* FUNCION QUE VALIDA EL FORMULARIO DOCENTE Y UTILIZACION DE SWEET ALERT */
+function validarFormIngresoDocente(){
+
     let arreglo_mensajes = new Array();
 
     if (!usuarioDocente ){
@@ -175,6 +176,6 @@ function  crear_li (mensaje){
     return li;
 }
     
-    
+/* FUNCION QUE BUSCA EL DOCENTE REGISTRADO, USUARIO, EMAIL Y CONTRASÑA */       
 function buscarDocenteRegistrado(){
 }

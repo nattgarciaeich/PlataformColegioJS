@@ -251,6 +251,14 @@ body{
 }
 
  /* FORM DOCENTES */
+ ::placeholder {
+    color: white;
+ }
+
+ #materia{
+    color: #ffffff;
+    background-color: #354f7050;
+ }
 
 .docentes{
     display: flex;

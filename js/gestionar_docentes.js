@@ -24,6 +24,32 @@ btn_verNotas.addEventListener("click",()=>{
     }
 })
 
+let btn_eliminarNotas = document.getElementById("btn_eliminarNotas");
+btn_eliminarNotas.addEventListener("click",()=>{
+
+    if (existen_notas()){
+
+      Swal.fire({
+        title: '¿Estas seguro que deseas eliminar la ultima nota subida a la plataforma?',
+        text: "No podras recuperarla",
+        icon: 'warning', 
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, eliminar',
+        eliminar_ultima_nota();
+      }).then((result) => {
+        if (result.isConfirmed) {          
+          Swal.fire(
+            'Las nota ha sido eliminada de la plataforma',
+          )       
+        }
+      })
+      
+
+    }
+})
+
 let btn_filtrarCurso = document.getElementById("btn_filtrarCurso");
 btn_filtrarCurso.addEventListener("click", () => {
 const cursoSeleccionado = document.getElementById("curso_filtro").value;
@@ -41,7 +67,7 @@ let btn_filtrarMateria = document.getElementById("btn_filtrarMateria");
 btn_filtrarMateria.addEventListener("click", () => {
 const materiaSeleccionada = document.getElementById("materia_filtro").value.toLowerCase();
   
-  if(!materiaSeleccionada /* || materiaSeleccionada != "lengua" ||  materiaSeleccionada != "matematica" ||  materiaSeleccionada != "sociales" ||  materiaSeleccionada != "naturales" */){
+  if(!materiaSeleccionada || materiaSeleccionada != "lengua" &&  materiaSeleccionada != "matematica" &&  materiaSeleccionada != "sociales" &&  materiaSeleccionada != "naturales"){
     Swal.fire('No ha ingresado una opcion valida')
     document.getElementById("materia_filtro").value = "";
       
@@ -255,8 +281,8 @@ function mostrar_arreglo_notas(notas) {
     let li = document.createElement("li");
     li.textContent = `Alumn@: ${nota.nombre} ${nota.apellido} Materia: ${nota.materia} Curso: ${nota.curso} ° Nota: ${nota.nota}`;
     li.classList.add("lista_notas");
-    ul.appendChild(li);
-  });
+    ul.appendChild(li);    
+  });  
   
   let offcanvasContainer = document.getElementById("offcanvasContainer");
   offcanvas.appendChild(ul);
@@ -275,8 +301,12 @@ function filtrar_materia(materia) {
     resetear_form()
   }
 
+function eliminar_ultima_nota() {       
+      notas_ingresadas.pop()
+      mostrar_arreglo_notas()      
+}
+
 window.addEventListener("beforeunload", () => {
     localStorage.setItem("notas", JSON.stringify(notas_ingresadas));
   });
-/* 
- localStorage.clear()  */
+
