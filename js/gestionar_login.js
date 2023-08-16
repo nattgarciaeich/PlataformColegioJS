@@ -113,15 +113,25 @@ let url = './js/setting.json'
 /* FUNCION PARA INCORPORAR LA INFO DE JSON */
 async function obtenerJSON(){
     const resp = await fetch (url);
-    const data = await resp.json()
+    const data = await resp.json();
 
-    return data
+    return data;
 }
+
+obtenerJSON().then(data => console.log(data.alumnos))
     
 /* FUNCION QUE BUSCA EL ALUMNO REGISTRADO, NOMBRE, EMAIL Y CONTRASELA */   
 function buscarAlumnoRegistrado(){
     obtenerJSON().then ( data =>{
-        
+
+        const nombre = data.alumnos.find( u => u.nombre == nombreAlumno)
+
+        if(nombre.contraseña === contraseñaAlumno){
+            console.log("se encontro alumno y ocntraseña")
+        }
+        if(nombre.email === emailAlumno){
+            console.log("se encontro alumno, contraseña y email")
+        }
     })
     
 }
