@@ -61,7 +61,7 @@ body{
     justify-content: flex-end;
     padding: 10px;
 }
-.marcador:hover {
+.marcadorInicio:hover {
     background-color: #6c3b467d;
     padding: 5px 10px;
     border-radius: 20px;
@@ -248,6 +248,14 @@ body{
 #avisosAlumnos{
     margin-top: 15px;
     color: white;
+}
+
+.lista{
+    list-style: none;
+    font-size: 25px;
+    font-weight: 400;
+    padding: 5px;
+
 }
 
  /* FORM DOCENTES */
@@ -474,16 +482,19 @@ h1{
 }
 
 .accordion{
-    --bs-accordion-active-bg: #354f708e;
-    
+    --bs-accordion-active-bg: #354f708e;    
 }
 
+.accordion-button{
+    font-size: 20px;
+}
 .accordion-button:not(.collapsed){
     color: white;
 }
 
 
 .accordion-item{
+    font-size: 20px;
     color: white;
     background-color:#354f708e ;
     border: #354f708e;
@@ -494,6 +505,24 @@ h1{
 .info{
     border-radius: 10px;
 }
+
+/* SWEET ALERT */
+
+.swal2-title {
+    font-family: 'Montserrat', sans-serif !important;
+    font-size: 30px !important;
+    font-weight: 500;
+    color: rgb(15, 15, 15) !important;
+  }
+  
+  .swal2-html-container{
+    font-family: 'Montserrat', sans-serif;
+    color: #354f708e !important;
+  }
+  
+  .swal2-confirm {
+    background-color:#354f70 !important;
+  }
 
 
   

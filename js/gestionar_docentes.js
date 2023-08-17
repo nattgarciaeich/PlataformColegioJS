@@ -66,23 +66,23 @@ function validar_formulario(){
   let arreglo_mensajes = new Array();
 
     if (!input_nombre ){
-            arreglo_mensajes.push("Ingrese nombre");          
+            arreglo_mensajes.push("- Ingrese nombre");          
 
     }
     if (!input_apellido ){
-        arreglo_mensajes.push("Ingrese apellido");       
+        arreglo_mensajes.push("- Ingrese apellido");       
 
     }
     if (!input_curso || input_curso <= 0 || input_curso > 6 ){
-        arreglo_mensajes.push("Ingrese un curso entre 1° y 6°");     
+        arreglo_mensajes.push("- Ingrese un curso entre 1° y 6°");     
 
     }
     if (!select_materia || select_materia == "-"){
-        arreglo_mensajes.push("Seleccione materia");       
+        arreglo_mensajes.push("- Seleccione materia");       
 
     }
     if (!input_nota || input_nota <= 0 || input_nota > 10 ){
-        arreglo_mensajes.push("Ingrese nota");        
+        arreglo_mensajes.push("- Ingrese nota");        
 
     }
     if (arreglo_mensajes.length>0){
@@ -111,6 +111,7 @@ function  crear_li (mensaje){
     
     let li = document.createElement("li");
     li.textContent = mensaje;
+    li.classList.add("lista")
     return li;
 }
 
