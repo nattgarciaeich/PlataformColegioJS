@@ -39,8 +39,9 @@ document.addEventListener('DOMContentLoaded', () => {
 /* EVENTOS DE CLICK DEL FORM DE LOGIN - BOTON INICIAR SESION */
 let btnIniciarSesionAlumno = document.getElementById("btnIniciarSesionAlumno");
 btnIniciarSesionAlumno.addEventListener("click",() => {
-    if(validarFormIngresoAlumno()){
-    buscarAlumnoRegistrado()
+    if(validarFormIngresoAlumno()){  
+        buscarAlumnoRegistrado()
+         
     }
 
 });
@@ -52,23 +53,18 @@ btnIniciarSesionDocente.addEventListener("click",() => {
     }
 
 });
-
-/* VARIABLES GLOBALES INFO QUE ENTRA DEL INPUP DE INGRRESO ALUMNO */
-
-let nombreAlumno = document.getElementById ("nombreAlumno").value;
-let emailAlumno = document.getElementById("emailAlumno").value;
-let contraseñaAlumno = document.getElementById("contraseñaAlumno").value;
+  
 
 /* FUNCION QUE VALIDA EL FORMULARIO ALUMNO Y UTILIZACION DE SWEET ALERT */
 function validarFormIngresoAlumno(){
-
-    let nombreAlumno = document.getElementById ("nombreAlumno").value;
-    let emailAlumno = document.getElementById("emailAlumno").value;
+    let usuarioAlumno = document.getElementById ("usuarioAlumno").value.toLowerCase();
+    let emailAlumno = document.getElementById("emailAlumno").value.toLowerCase();
     let contraseñaAlumno = document.getElementById("contraseñaAlumno").value;
+   
     let arreglo_mensajes = new Array();
 
-    if (!nombreAlumno ){
-            arreglo_mensajes.push("Ingrese nombre");          
+    if (!usuarioAlumno ){
+            arreglo_mensajes.push("Ingrese usuario");          
 
     }
     if (!emailAlumno){
@@ -117,34 +113,49 @@ async function obtenerJSON(){
 
     return data;
 }
-
-obtenerJSON().then(data => console.log(data.alumnos))
     
-/* FUNCION QUE BUSCA EL ALUMNO REGISTRADO, NOMBRE, EMAIL Y CONTRASELA */   
+/* FUNCION QUE BUSCA EL ALUMNO REGISTRADO, USUARIO, EMAIL Y CONTRASEÑA Y LA VALIDA */   
 function buscarAlumnoRegistrado(){
+    let usuarioAlumno = document.getElementById ("usuarioAlumno").value.toLowerCase();
+    let emailAlumno = document.getElementById("emailAlumno").value.toLowerCase();
+    let contraseñaAlumno = document.getElementById("contraseñaAlumno").value;
+
     obtenerJSON().then ( data =>{
 
-        const nombre = data.alumnos.find( u => u.nombre == nombreAlumno)
+        const usuariosRegistrados = data.alumnos.find( u => u.usuario == usuarioAlumno)        
 
-        if(nombre.contraseña === contraseñaAlumno){
-            console.log("se encontro alumno y ocntraseña")
+        if(usuariosRegistrados.usuario !== usuarioAlumno){
+            console.log("usuario incorrecta")
         }
-        if(nombre.email === emailAlumno){
-            console.log("se encontro alumno, contraseña y email")
+        if(usuariosRegistrados.contraseña !== contraseñaAlumno){
+            console.log("contraseña incorrecta")
+            resetear_form_login()
         }
+        if(usuariosRegistrados.email !== emailAlumno){
+            console.log("email incorrecta")
+            resetear_form_login()
+        }
+        if(usuariosRegistrados.usuario === usuarioAlumno && usuariosRegistrados.contraseña === contraseñaAlumno && usuariosRegistrados.email === emailAlumno){
+            console.log("INICIAR SESION")
+            sessionStorage.setItem('usuarioIngresado', usuarioAlumno );
+            location.href = "../pages/alumnos.html"
+            
+        }          
+          
+
     })
     
 }
 
 
 /*  VARIABLES GLOBALES INFO QUE ENTRA DEL INPUP DE INGRRESO DOCENTE */
-let usuarioDocente = document.getElementById ("usuarioDocente").value;
-let emailDocente = document.getElementById("emailDocente").value;
-let contraseñaDocente = document.getElementById("contraseñaDocente").value;
 
 /* FUNCION QUE VALIDA EL FORMULARIO DOCENTE Y UTILIZACION DE SWEET ALERT */
 function validarFormIngresoDocente(){
-
+    let usuarioDocente = document.getElementById ("usuarioDocente").value.toLowerCase();
+    let emailDocente = document.getElementById("emailDocente").value.toLowerCase();
+    let contraseñaDocente = document.getElementById("contraseñaDocente").value;
+    
     let arreglo_mensajes = new Array();
 
     if (!usuarioDocente ){
@@ -188,4 +199,42 @@ function  crear_li (mensaje){
     
 /* FUNCION QUE BUSCA EL DOCENTE REGISTRADO, USUARIO, EMAIL Y CONTRASÑA */       
 function buscarDocenteRegistrado(){
+    let usuarioDocente = document.getElementById ("usuarioDocente").value.toLowerCase();
+    let emailDocente = document.getElementById("emailDocente").value.toLowerCase();
+    let contraseñaDocente = document.getElementById("contraseñaDocente").value;
+
+    obtenerJSON().then ( data =>{
+
+        const usuariosRegistrados = data.docentes.find( u => u.usuario == usuarioDocente)        
+
+       /*  if(usuariosRegistrados.usuario !== usuarioDocente){
+            console.log("usuario incorrecto")
+        } */
+        if(usuariosRegistrados.contraseña !== contraseñaDocente){
+            console.log("contraseña incorrecta")
+            resetear_form_login()
+        }
+        if(usuariosRegistrados.email !== emailDocente){
+            console.log("email incorrecta")
+            resetear_form_login()
+        }
+        if(usuariosRegistrados.usuario === usuarioDocente && usuariosRegistrados.contraseña === contraseñaDocente && usuariosRegistrados.email === emailDocente){
+            console.log("INICIAR SESION")
+            location.href = "../pages/docentes.html"            
+   
+        }
+    })
 }
+
+function resetear_form_login(){
+  
+    document.getElementById("usuarioAlumno").value = "";
+    document.getElementById("emailAlumno").value = "";
+    document.getElementById("contraseñaAlumno").value = "";
+    document.getElementById("usuarioDocente").value = "";
+    document.getElementById("emailDocente").value = "";
+    document.getElementById("contraseñaDocente").value = "";
+  
+  }
+
+  

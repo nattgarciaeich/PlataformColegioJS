@@ -86,3 +86,44 @@ function mostrar_arreglo_notas(notas) {
   
     offcanvas.appendChild(ul);
   } */
+
+
+
+ /*  function validarFormIngresoAlumno(){
+    let usuarioAlumno = document.getElementById ("usuarioAlumno").value.toLowerCase();
+    let emailAlumno = document.getElementById("emailAlumno").value.toLowerCase();
+    let contraseñaAlumno = document.getElementById("contraseñaAlumno").value;
+   
+    let arreglo_mensajes = new Array();
+
+    if (!usuarioAlumno ){
+            arreglo_mensajes.push("Ingrese usuario");          
+
+    }
+    if (!emailAlumno){
+        arreglo_mensajes.push("Ingrese email");       
+
+    }
+    if (!contraseñaAlumno ){
+        arreglo_mensajes.push("Ingrese contraseña");    
+
+    }
+    if (arreglo_mensajes.length>0){
+        let lista = document.createElement("ul");
+        lista.textContent = "No es posible iniciar sesion";
+
+        arreglo_mensajes.forEach(element => {
+            lista.appendChild(crear_li(element));
+        });
+
+        Swal.fire({
+            icon: 'error',
+            title: lista,
+            text: "Por favor, vuelva a intentarlo",
+            footer: ""
+          })
+    }
+
+    return arreglo_mensajes.length == 0;
+
+} */

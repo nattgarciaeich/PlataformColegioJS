@@ -37,9 +37,9 @@ btn_eliminarNotas.addEventListener("click",()=>{
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         confirmButtonText: 'Si, eliminar',
-        eliminar_ultima_nota();
       }).then((result) => {
-        if (result.isConfirmed) {          
+        if (result.isConfirmed) { 
+          eliminar_ultima_nota();         
           Swal.fire(
             'Las nota ha sido eliminada de la plataforma',
           )       
@@ -231,11 +231,10 @@ function resetear_form(){
     document.getElementById("materia").value = "";
     document.getElementById("nota").value = "";
     document.getElementById("curso_filtro").value = "";
-    document.getElementById("materia_filtro").value = "";
-
-  
+    document.getElementById("materia_filtro").value = "";  
   }
-  function existen_notas(){
+
+function existen_notas(){
     if(notas_ingresadas.length == 0){
       Swal.fire({
         title: 'No existen notas subidas a la plataforma',
@@ -291,19 +290,51 @@ function mostrar_arreglo_notas(notas) {
   
 function filtrar_curso(curso) {
     const filtrarCurso = notas_ingresadas.filter((nota) => nota.curso == parseInt(curso));
+    if(filtrarCurso == ""){
+      Swal.fire({
+        title: 'No existen notas subidas a la plataforma de ' + curso + "° año",
+        showClass: {
+          popup: 'animate__animated animate__fadeInDown'
+        },
+        hideClass: {
+          popup: 'animate__animated animate__fadeOutUp'
+        }
+      })  
+
+      resetear_form()
+      ocultar_offcanvas()
+    }else
     mostrar_arreglo_notas(filtrarCurso);
     resetear_form()
   }
   
 function filtrar_materia(materia) {
     const filtrarMateria = notas_ingresadas.filter((nota) => nota.materia.toLowerCase() == materia.toLowerCase());
+    if(filtrarMateria == ""){
+      Swal.fire({
+        title: 'No existen notas subidas a la plataforma de ' + materia,
+        showClass: {
+          popup: 'animate__animated animate__fadeInDown'
+        },
+        hideClass: {
+          popup: 'animate__animated animate__fadeOutUp'
+        }
+      })  
+
+      resetear_form()
+      ocultar_offcanvas()
+    }else
     mostrar_arreglo_notas(filtrarMateria);
     resetear_form()
   }
 
 function eliminar_ultima_nota() {       
       notas_ingresadas.pop()
-      mostrar_arreglo_notas()      
+      if(notas_ingresadas == ""){
+        ocultar_offcanvas()
+      }else
+      mostrar_arreglo_notas(notas_ingresadas)
+        
 }
 
 window.addEventListener("beforeunload", () => {

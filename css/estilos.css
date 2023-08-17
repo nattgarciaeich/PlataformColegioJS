@@ -252,12 +252,12 @@ body{
 
  /* FORM DOCENTES */
  ::placeholder {
-    color: white;
+    color: rgb(168, 164, 164);
  }
 
  #materia{
-    color: #ffffff;
-    background-color: #354f7050;
+    color: rgb(168, 164, 164);;
+    background-color: transparent;
  }
 
 .docentes{
@@ -453,7 +453,32 @@ h1{
     color: #e9e9ea;
 }
 
+/* ALUMNOS */
+#notas_alumnos{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-content: center;
+    margin: auto;
+    margin-top: 50px;
+    width: 60%;
+}
 
+#accordionExample{
+    width: 100%;
+}
+
+/* .accordion-button{
+    background-color: #354f708e;
+}
+
+#collapseOne{
+    background-color: #354f708e;
+}
+
+#accordion-body{
+    background-color: #7035378e;
+} */
 
 
 
