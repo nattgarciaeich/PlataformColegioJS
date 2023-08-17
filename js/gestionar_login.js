@@ -124,18 +124,18 @@ function buscarAlumnoRegistrado(){
 
         const usuariosRegistrados = data.alumnos.find( u => u.usuario == usuarioAlumno)        
 
-        if(usuariosRegistrados.usuario !== usuarioAlumno){
+        if(!usuariosRegistrados || usuariosRegistrados.usuario !== usuarioAlumno){
             console.log("usuario incorrecta")
         }
-        if(usuariosRegistrados.contraseña !== contraseñaAlumno){
+        if(!usuariosRegistrados || usuariosRegistrados.contraseña !== contraseñaAlumno){
             console.log("contraseña incorrecta")
             resetear_form_login()
         }
-        if(usuariosRegistrados.email !== emailAlumno){
+        if(!usuariosRegistrados || usuariosRegistrados.email !== emailAlumno){
             console.log("email incorrecta")
             resetear_form_login()
         }
-        if(usuariosRegistrados.usuario === usuarioAlumno && usuariosRegistrados.contraseña === contraseñaAlumno && usuariosRegistrados.email === emailAlumno){
+        else if(usuariosRegistrados.usuario === usuarioAlumno && usuariosRegistrados.contraseña === contraseñaAlumno && usuariosRegistrados.email === emailAlumno){
             console.log("INICIAR SESION")
             sessionStorage.setItem('usuarioIngresado', usuarioAlumno );
             location.href = "../pages/alumnos.html"
