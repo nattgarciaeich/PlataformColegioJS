@@ -135,8 +135,8 @@ mostrarArray()
 
 /* FUNCION QUE BUSCA EL ALUMNO REGISTRADO, USUARIO, EMAIL Y CONTRASEÑA Y LA COMPARA CON JSON SI ES INCORRECTO, MUESTRA UNA ALERTA, SI ES CORRECTO REDIRECCIONA A LA PAGINA DE ALUMNOS */   
 function buscarAlumnoRegistrado(){
-    let usuarioAlumno = document.getElementById ("usuarioAlumno").value.toLowerCase();
-    let emailAlumno = document.getElementById("emailAlumno").value.toLowerCase();
+    let usuarioAlumno = document.getElementById ("usuarioAlumno").value;
+    let emailAlumno = document.getElementById("emailAlumno").value;
     let contraseñaAlumno = document.getElementById("contraseñaAlumno").value;
 
     obtenerJSON().then ( data =>{
@@ -240,8 +240,8 @@ function buscarAlumnoRegistrado(){
 
 /* FFUNCION QUE BUSCA EL DOCENTE REGISTRADO, USUARIO, EMAIL Y CONTRASEÑA Y LA COMPARA CON JSON SI ES INCORRECTO, MUESTRA UNA ALERTA, SI ES CORRECTO REDIRECCIONA A LA PAGINA DE DOCENTES */       
 function buscarDocenteRegistrado(){
-    let usuarioDocente = document.getElementById ("usuarioDocente").value.toLowerCase();
-    let emailDocente = document.getElementById("emailDocente").value.toLowerCase();
+    let usuarioDocente = document.getElementById ("usuarioDocente").value;
+    let emailDocente = document.getElementById("emailDocente").value;
     let contraseñaDocente = document.getElementById("contraseñaDocente").value;
 
     obtenerJSON().then ( data =>{
