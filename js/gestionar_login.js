@@ -95,6 +95,7 @@ function validarFormIngresoAlumno(){
             text: "Por favor, vuelva a intentarlo",
             footer: ""
           })
+          resetear_form_login()
     }
 
     return arreglo_mensajes.length == 0;
@@ -121,7 +122,17 @@ async function obtenerJSON(){
     const data = await resp.json();
     return data;
 }
-    
+
+/* muestro el array en consola para poder probar distintos usuarios en el ingreso */
+function mostrarArray(){
+    obtenerJSON(url).then ( data =>{
+        console.log(data)
+       
+            })
+}
+
+mostrarArray()
+
 /* FUNCION QUE BUSCA EL ALUMNO REGISTRADO, USUARIO, EMAIL Y CONTRASEÑA Y LA COMPARA CON JSON SI ES INCORRECTO, MUESTRA UNA ALERTA, SI ES CORRECTO REDIRECCIONA A LA PAGINA DE ALUMNOS */   
 function buscarAlumnoRegistrado(){
     let usuarioAlumno = document.getElementById ("usuarioAlumno").value.toLowerCase();
