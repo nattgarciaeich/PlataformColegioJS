@@ -64,7 +64,7 @@
                 "sociales": 9,
                 "naturales": 6,
                 "arte": 8,
-                "educacion-fisica": 7,
+                "edFisica": 7,
                 "ingles": 8
               }
         },
@@ -82,7 +82,7 @@
                 "sociales": 9,
                 "naturales": 6,
                 "arte": 7,
-                "educacion-fisica": 8,
+                "edFisica": 8,
                 "ingles": 9
             }
         },
@@ -100,7 +100,7 @@
                 "sociales": 7,
                 "naturales": 8,
                 "arte": 9,
-                "educacion-fisica": 7,
+                "edFisica": 7,
                 "ingles": 8
               }
         },
@@ -118,7 +118,7 @@
                 "sociales": 8,
                 "naturales": 9,
                 "arte": 6,
-                "educacion-fisica": 7,
+                "edFisica": 7,
                 "ingles": 8
             }
         },
@@ -136,7 +136,7 @@
                 "sociales": 7,
                 "naturales": 8,
                 "arte": 9,
-                "educacion-fisica": 8,
+                "edFisica": 8,
                 "ingles": 7
               }
         }

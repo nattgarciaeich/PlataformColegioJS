@@ -468,18 +468,32 @@ h1{
     width: 100%;
 }
 
-/* .accordion-button{
-    background-color: #354f708e;
+#accordion-body p{
+    padding: 5px;
+    margin: 5px;
 }
 
-#collapseOne{
-    background-color: #354f708e;
+.accordion{
+    --bs-accordion-active-bg: #354f708e;
+    
 }
 
-#accordion-body{
-    background-color: #7035378e;
-} */
+.accordion-button:not(.collapsed){
+    color: white;
+}
 
+
+.accordion-item{
+    color: white;
+    background-color:#354f708e ;
+    border: #354f708e;
+}
+
+/* TOASTIFY */
+
+.info{
+    border-radius: 10px;
+}
 
 
   

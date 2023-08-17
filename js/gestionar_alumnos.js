@@ -1,55 +1,68 @@
+/* VARIABLE QUE TRAE LA INFO DE SESSION STORAGE DEL INICIO DE SESION */
+
 let usuarioIngresado = sessionStorage.getItem("usuarioIngresado");
 console.log(usuarioIngresado)
 
 let url = '../js/setting.json' 
 
 buscar_info_usuario()
-/* FUNCION obtenerJSON ESTA EN GESTIONAR LOGIN LINEA 109 */
+
+/* FUNCION QUE TRAE LA INFO DEL JSON API LOCAL */
 async function obtenerJSON(){
     const resp = await fetch (url);
     const data = await resp.json();
 
     return data;
 }
+//ARRAY CON LA INFO DE notas de json DEL USUARIO QUE INICIO SESION
+let notas = new Array()
 
+/* FUNCION QUE BUSCA LA INFO DEL USUARIO Y PONE LAS NOTAS EN EL ARRAY */
 function buscar_info_usuario(){
-obtenerJSON().then ( data =>{
+    obtenerJSON().then ( data =>{
 
     const infoUsuario = data.alumnos.find( u => u.usuario == usuarioIngresado) 
 
-    if(infoUsuario){
+        if(infoUsuario){
         const listadoNotas = infoUsuario.notas
-        console.log(listadoNotas) 
-        return listadoNotas
-    }
+        notas = listadoNotas
+        }
 
-    mostrar_notas_acordion()
-
-})
-
+        mostrar_notas_acordion()
+        console.log(notas)   
+    })
 }
 
-let notas = new Array()
-
+/* FUNCION QUE MUESTRA LAS NOSTAS EN EL ACORDION */
 function mostrar_notas_acordion(){
-    let acordionNotas = documen.getElementById("accordion-body")
-    acordionNotas.textContent = notas
+    let acordionNotas = document.getElementById("accordion-body")
+    acordionNotas.textContent = "";
+
+    let matematica = document.createElement("p")
+    matematica.textContent = "Matematica : " + notas.matematica
+    acordionNotas.appendChild(matematica)
     
-    if (notas.length>0){
-        let lista = document.createElement("ul");
+    let lengua = document.createElement("p")
+    lengua.textContent = "Lengua : " + notas.lengua
+    acordionNotas.appendChild(lengua)
 
-        notas.forEach(element => {
-            lista.appendChild(crear_li(element));
-        });
+    let sociales = document.createElement("p")
+    sociales.textContent = "Sociales : " + notas.sociales
+    acordionNotas.appendChild(sociales)
 
-        acordionNotas.appendChild(lista)
-}
+    let naturales = document.createElement("p")
+    naturales.textContent = "Naturales : " + notas.naturales
+    acordionNotas.appendChild(naturales)
 
-    function  crear_li (mensaje){
-    
-        let li = document.createElement("li");
-        li.textContent = mensaje;
-        return li;
-    }
+    let arte = document.createElement("p")
+    arte.textContent = "Arte : " + notas.arte
+    acordionNotas.appendChild(arte)
 
+    let edFisica = document.createElement("p")
+    edFisica.textContent = "Educacion Fisica : " + notas.edFisica
+    acordionNotas.appendChild(edFisica)
+
+    let ingles = document.createElement("p")
+    ingles.textContent = "Ingles : " + notas.ingles
+    acordionNotas.appendChild(ingles)
 }

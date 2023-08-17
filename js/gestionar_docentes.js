@@ -1,11 +1,15 @@
+//TRAER INFO DEL LOCAL STORAGE
 document.addEventListener("DOMContentLoaded", () => {
     notas_ingresadas = JSON.parse(localStorage.getItem("notas")) || [];
     gen_id = Math.max(...notas_ingresadas.map((nota) => nota.id)) + 1;
   });
   
+/* VARIABLE GLOBALES PARA EL ARRAY */
+
 let notas_ingresadas = new Array();
 let gen_id = 1
 
+/* DOM Y EVENTOS DE BOTONES DEL FORMULARIO */
 let btn_agregar = document.getElementById("btn_agregar");
 btn_agregar.addEventListener("click",()=>{
 
@@ -44,39 +48,12 @@ btn_eliminarNotas.addEventListener("click",()=>{
             'Las nota ha sido eliminada de la plataforma',
           )       
         }
-      })
-      
-
+      })     
     }
 })
 
-let btn_filtrarCurso = document.getElementById("btn_filtrarCurso");
-btn_filtrarCurso.addEventListener("click", () => {
-const cursoSeleccionado = document.getElementById("curso_filtro").value;
 
-    if(!cursoSeleccionado || cursoSeleccionado <= 0 || cursoSeleccionado > 6){
-    Swal.fire('No ha ingresado una opcion valida')
-    document.getElementById("curso_filtro").value = "";
-      
-    }else if(existen_notas()){
-        filtrar_curso(cursoSeleccionado);
-    }
-});
-  
-let btn_filtrarMateria = document.getElementById("btn_filtrarMateria");
-btn_filtrarMateria.addEventListener("click", () => {
-const materiaSeleccionada = document.getElementById("materia_filtro").value.toLowerCase();
-  
-  if(!materiaSeleccionada || materiaSeleccionada != "lengua" &&  materiaSeleccionada != "matematica" &&  materiaSeleccionada != "sociales" &&  materiaSeleccionada != "naturales"){
-    Swal.fire('No ha ingresado una opcion valida')
-    document.getElementById("materia_filtro").value = "";
-      
-  }else if (existen_notas()) {
-      filtrar_materia(materiaSeleccionada);
-    }
-});
-
-
+/* FUNCION QUE VALIDA EL FORM, CREA UNA LISTA Y LA MUESTRA EN UN SWEET ALERRT */
 function validar_formulario(){
 
   let input_nombre = document.getElementById("nombre").value;
@@ -123,12 +100,13 @@ function validar_formulario(){
           text: "Por favor, vuelva a intentarlo",
           footer: ""
         })
-  }
+    }
 
 return arreglo_mensajes.length == 0;
 
 }
 
+/* FUNCION QUE CREA LA LISTA PARA MOSTRAR EN EL SWEET ALERT */
 function  crear_li (mensaje){
     
     let li = document.createElement("li");
@@ -136,8 +114,8 @@ function  crear_li (mensaje){
     return li;
 }
 
+/* FUNCION CON DOM PARA SUBIR LAS NOTAS DESDE EL FORMULARIO */
 function subirNota(){
-
 
     let nombre = document.getElementById("nombre").value;
     let apellido = document.getElementById("apellido").value;
@@ -153,11 +131,12 @@ function subirNota(){
     generar_offcanvas_nota(nueva_nota);
     Toastify({
       text: "Nota subida con éxito!",
+      className: "info",
       duration: 3000,
       destination: "https://github.com/apvarun/toastify-js",
       newWindow: true,
       close: true,
-      gravity: "top", // `top` or `bottom`
+      gravity: "top", // `top` or `bottom` 
       position: "right", // `left`, `center` or `right`
       stopOnFocus: true, // Prevents dismissing of toast on hover
       style: {
@@ -168,8 +147,10 @@ function subirNota(){
    
 }
 
+//VARIABLE DEL OFFCANVAS
 let offcanvas = null; 
 
+/* FUNCION QUE GENERA EL OFFCANVAS CON DOM Y EVENTOS Y MUESTRA LA NOTA CARGADA */
 function generar_offcanvas_nota(nueva_nota) {
 
   if (offcanvas) {
@@ -216,6 +197,7 @@ function generar_offcanvas_nota(nueva_nota) {
   resetear_form();
 }
 
+/* FUNCION PAR AOCULTAR EL OFFCANVAS */
 function ocultar_offcanvas() {
   if (offcanvas) {
     offcanvas.remove();
@@ -223,6 +205,7 @@ function ocultar_offcanvas() {
   }
 }
 
+/* FUNCION QUE RESETEA EL FORMULARIO */
 function resetear_form(){
   
     document.getElementById("nombre").value = "";
@@ -234,25 +217,27 @@ function resetear_form(){
     document.getElementById("materia_filtro").value = "";  
   }
 
+  /* FUNCION QUE RECORRE EL ARRAY PARA VER SI HAY NOTAS CARGADAS */
 function existen_notas(){
-    if(notas_ingresadas.length == 0){
-      Swal.fire({
-        title: 'No existen notas subidas a la plataforma',
-        showClass: {
-          popup: 'animate__animated animate__fadeInDown'
-        },
-        hideClass: {
-          popup: 'animate__animated animate__fadeOutUp'
-        }
-      })  
-      resetear_form();     
-      return false;
+  if(notas_ingresadas.length == 0){
+    Swal.fire({
+      title: 'No existen notas subidas a la plataforma',
+      showClass: {
+        popup: 'animate__animated animate__fadeInDown'
+      },
+      hideClass: {
+        popup: 'animate__animated animate__fadeOutUp'
+      }
+    })  
+    resetear_form();     
+    return false;
             
-    }else{
-        return true;
-    }
+  }else{
+    return true;
+  }
 }
-  
+
+/* FUNCION QUE MUESTRA EL ARREGLO DE NOTAS UTILIZANDO DOM Y EVENTOS */
 function mostrar_arreglo_notas(notas) {
 
   if (offcanvas) {
@@ -287,56 +272,92 @@ function mostrar_arreglo_notas(notas) {
   offcanvas.appendChild(ul);
   offcanvasContainer.appendChild(offcanvas);
 }
-  
-function filtrar_curso(curso) {
-    const filtrarCurso = notas_ingresadas.filter((nota) => nota.curso == parseInt(curso));
-    if(filtrarCurso == ""){
-      Swal.fire({
-        title: 'No existen notas subidas a la plataforma de ' + curso + "° año",
-        showClass: {
-          popup: 'animate__animated animate__fadeInDown'
-        },
-        hideClass: {
-          popup: 'animate__animated animate__fadeOutUp'
-        }
-      })  
 
-      resetear_form()
-      ocultar_offcanvas()
-    }else
+/* BOTONES DE FILTRADO DE CURSO Y MATERIA - DOM Y EVENTOS */
+
+let btn_filtrarCurso = document.getElementById("btn_filtrarCurso");
+btn_filtrarCurso.addEventListener("click", () => {
+
+const cursoSeleccionado = document.getElementById("curso_filtro").value;
+
+  if(!cursoSeleccionado || cursoSeleccionado <= 0 || cursoSeleccionado > 6){
+  Swal.fire('No ha ingresado una opcion valida')
+  document.getElementById("curso_filtro").value = "";
+      
+  }else if(existen_notas()){
+        filtrar_curso(cursoSeleccionado);
+  }
+});
+  
+let btn_filtrarMateria = document.getElementById("btn_filtrarMateria");
+btn_filtrarMateria.addEventListener("click", () => {
+
+const materiaSeleccionada = document.getElementById("materia_filtro").value.toLowerCase();
+  
+  if(!materiaSeleccionada || materiaSeleccionada != "lengua" &&  materiaSeleccionada != "matematica" &&  materiaSeleccionada != "sociales" &&  materiaSeleccionada != "naturales"){
+    Swal.fire('No ha ingresado una opcion valida')
+    document.getElementById("materia_filtro").value = "";
+      
+  }else if (existen_notas()) {
+      filtrar_materia(materiaSeleccionada);
+  }
+});
+
+
+/* FUNCION QUE UTILIZA FILTER Y MUESTRA LAS NOTAS DEL CURSO FILTRADO */
+function filtrar_curso(curso) {
+  const filtrarCurso = notas_ingresadas.filter((nota) => nota.curso == parseInt(curso));
+  if(filtrarCurso == ""){
+    Swal.fire({
+      title: 'No existen notas subidas a la plataforma de ' + curso + "° año",
+      showClass: {
+        popup: 'animate__animated animate__fadeInDown'
+      },
+      hideClass: {
+        popup: 'animate__animated animate__fadeOutUp'
+      }
+    })  
+
+    resetear_form()
+    ocultar_offcanvas()
+
+  }else
     mostrar_arreglo_notas(filtrarCurso);
     resetear_form()
-  }
-  
-function filtrar_materia(materia) {
-    const filtrarMateria = notas_ingresadas.filter((nota) => nota.materia.toLowerCase() == materia.toLowerCase());
-    if(filtrarMateria == ""){
-      Swal.fire({
-        title: 'No existen notas subidas a la plataforma de ' + materia,
-        showClass: {
-          popup: 'animate__animated animate__fadeInDown'
-        },
-        hideClass: {
-          popup: 'animate__animated animate__fadeOutUp'
-        }
-      })  
-
-      resetear_form()
-      ocultar_offcanvas()
-    }else
-    mostrar_arreglo_notas(filtrarMateria);
-    resetear_form()
-  }
-
-function eliminar_ultima_nota() {       
-      notas_ingresadas.pop()
-      if(notas_ingresadas == ""){
-        ocultar_offcanvas()
-      }else
-      mostrar_arreglo_notas(notas_ingresadas)
-        
 }
 
+/* FUNCION QUE UTILIZA FILTER Y MUESTRA LAS NOTAS DE LA MATERIA FILTRADA */
+function filtrar_materia(materia) {
+  const filtrarMateria = notas_ingresadas.filter((nota) => nota.materia.toLowerCase() == materia.toLowerCase());
+  if(filtrarMateria == ""){
+    Swal.fire({
+      title: 'No existen notas subidas a la plataforma de ' + materia,
+      showClass: {
+        popup: 'animate__animated animate__fadeInDown'
+      },
+      hideClass: {
+        popup: 'animate__animated animate__fadeOutUp'
+      }
+    })  
+
+    resetear_form()
+    ocultar_offcanvas()
+
+  }else
+    mostrar_arreglo_notas(filtrarMateria);
+    resetear_form()
+}
+
+/* FUNCION QUE ELIMINA LA ULTIMA NOTA DEL ARREGLO */
+function eliminar_ultima_nota() {       
+  notas_ingresadas.pop()
+  if(notas_ingresadas == ""){
+        ocultar_offcanvas()
+  }else
+  mostrar_arreglo_notas(notas_ingresadas)
+}
+
+/* SUBIR LAS NOTAS AL LOCAL STORAGE */
 window.addEventListener("beforeunload", () => {
     localStorage.setItem("notas", JSON.stringify(notas_ingresadas));
   });
